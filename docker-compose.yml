@@ -9,3 +9,12 @@ services:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
       - POSTGRES_DB=inorbit
+
+app:
+    build: .
+    ports:
+      - "3000:3000"  # Substitua pela porta que sua aplicação Node.js usa
+    environment:
+      - DATABASE_URL=postgresql://docker:docker@postgre:5432/inorbit  # Variável de conexão com o PostgreSQL
+    depends_on:
+      - postgre
